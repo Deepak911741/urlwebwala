@@ -1,0 +1,100 @@
+    :root {
+      --loader-size: 15vw;
+      --logo-size: 9vw;
+      --border-thickness: 0.8vw;
+      --tp-theme-redical: #ff3d00;
+      --tp-theme-orange: #ff9100;
+    }
+
+    /* html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    } */
+
+    .custom-preloader-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      z-index: 9999;
+      animation: custom-fadeIn 0.5s ease-in-out;
+    }
+
+    .custom-preloader-container {
+      position: relative;
+      width: var(--loader-size);
+      height: var(--loader-size);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .custom-preloader-logo {
+      background: url('./assets/img/logo/loader1.png') no-repeat center;
+      background-size: contain;
+      width: var(--logo-size);
+      height: var(--logo-size);
+      position: absolute;
+      animation: custom-pulse 1.5s ease-in-out infinite;
+    }
+
+    .custom-loader-circle {
+      position: absolute;
+      width: var(--loader-size);
+      height: var(--loader-size);
+      border: var(--border-thickness) solid rgba(243, 243, 243, 0.8);
+      border-top: var(--border-thickness) solid transparent;
+      border-left: var(--border-thickness) solid var(--tp-theme-redical);
+      border-right: var(--border-thickness) solid var(--tp-theme-orange);
+      border-radius: 50%;
+      animation: custom-spin 1.5s linear infinite;
+      will-change: transform;
+    }
+
+    @keyframes custom-spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes custom-pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes custom-fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --loader-size: 20vw;
+        --logo-size: 12vw;
+        --border-thickness: 1vw;
+      }
+    }
+
+    @media (max-width: 480px) {
+      :root {
+        --loader-size: 25vw;
+        --logo-size: 15vw;
+        --border-thickness: 1.2vw;
+      }
+    }
+
+    #main-content {
+      display: none;
+      padding: 2rem;
+      text-align: center;
+      font-family: sans-serif;
+    }

@@ -1,0 +1,137 @@
+:root {
+  --background: rgba(0, 0, 0, 0.6); /* Black with 60% opacity */
+    --white-text: #f8fcfc;
+  --hover-text: #f8fcfc;
+  --button-background: #f8fcfc;
+  --button-background-hover: #000;
+  --button-text: #007af7;
+  --tp-theme-orange: #ff321f;
+  --tp-theme-vogue: #032b5f;
+}
+
+/* Cookie Banner */
+
+/* Hide when dismissed */
+.cookie-container.hide,
+.cookie-modal.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cookie-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--background);
+  color: var(--white-text);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-size: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+  z-index: 1000;
+}
+
+/* Ensure text is always white */
+.cookie-container p {
+  color: white !important;
+}
+
+/* Ensure text wraps properly */
+.cookie-text {
+  flex: 1;
+  text-align: left;
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 70%;
+}
+
+/* Buttons Section */
+.cookie-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Buttons */
+.outline-btn {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.outline-btn:hover {
+  background: white;
+  color: black;
+}
+
+.filled-btn {
+  background: var(--tp-theme-orange);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.filled-btn:hover {
+  background: var(--tp-theme-vogue);
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 1024px) {
+  .cookie-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .cookie-text {
+    max-width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .cookie-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .outline-btn,
+  .filled-btn {
+    width: 90%;
+    max-width: 300px;
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+/* Extra Small Screens (Phones) */
+@media (max-width: 480px) {
+  .cookie-container {
+    padding: 0.8rem;
+  }
+
+  .cookie-text {
+    font-size: 0.85rem;
+    max-width: 100%;
+  }
+
+  .outline-btn,
+  .filled-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
