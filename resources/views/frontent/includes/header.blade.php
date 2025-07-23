@@ -1,4 +1,4 @@
-<!doctype html>
+<!Doctype html>
 <html class="no-js" lang="en">
 
 <head>
@@ -21,7 +21,6 @@
     <link rel="icon" type="image/x-icon" href="./assets/img/logo/fev.png">
     <link rel="canonical" href="https://www.urlwebwala.com">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZ5QVDBENP"></script>
-    
     <link rel="stylesheet" href="{{ asset ('public/css/style1.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/font-awesome-pro.css')}}">
@@ -34,29 +33,12 @@
     <link rel="stylesheet" href="{{ asset ('public/css/spacing.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/style.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/blogstyle.css')}}">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="stylecookies.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      integrity="sha512-acY8FHuKpV1SEe3PgI3F1o6+Mf+TZt/vEjVKHgaXM+qKjOLrSm12y3xbC3vdh4FMy+ITypZty4ZyKjAUewm6oA=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset ('public/css/stylecookies.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+   
 </head>
 
-
 <body>
-    <!-- <div class="cookie-container hide">
-        <p class="cookie-text">
-            We employ digital traces to enrich your journey, decode usage patterns, and refine our craft.
-            Essential ones ensure core functionality, while others sculpt tailored experiences—tweak settings or allow all for full access.
-            For more details, read our <a href="privacypolicy.php"><b style="color: red;">Privacy Policy</b></a>.
-        </p>
-        <div class="cookie-buttons">
-            <button id="denyCookies" class="outline-btn">Deny</button>
-            <button id="acceptCookies" class="filled-btn">Accept all cookies</button>
-        </div>
-    </div> -->
-
     <header>
         <div class="tp-header__1 theme-bg p-relative">
             <div id="header-sticky" class="tp-header__1-main header-border-button pl-105 pr-105">
@@ -66,7 +48,7 @@
                             <div class="col-xxl-3 col-xl-2 col-6">
                                 <div class="logo border-right" style="margin-left: 20px; width: 350px;">
                                     <a href="#">
-                                        <img src="assets/img/logo/urlwebwala.png" style="width:200px;" alt="logo">
+                                        <img src="{{ asset ('public/images/logo/urlwebwala.png')}}" style="width:200px;" alt="logo">
                                     </a>
                                 </div>
                             </div>
@@ -74,41 +56,41 @@
                                 <div class="main-menu p-relative">
                                     <nav id="mobile-menu">
                                         <ul>
-                                            <li><a href="index.php">Home</a></li>
+                                            <li><a href="{{ config('constants.HOME_URL')}}">Home</a></li>
                                             <li class="has-dropdown">
                                                 <a href="#">Company</a>
                                                 <ul class="submenu">
-                                                    <li><a href="about.php">ABOUT US</a></li>
-                                                    <li><a href="career.php">CAREER</a></li>
-                                                    <li><a href="developmentprocess.php">DEVELOPMENT PROCESS</a></li>
+                                                    <li><a href="{{ config('constants.ABOUT_URL')}}">ABOUT US</a></li>
+                                                    <li><a href="{{ config('constants.CAREER_URL')}}">CAREER</a></li>
+                                                    <li><a href="{{ config('constants.DEVELOPMENT_URL')}}">DEVELOPMENT PROCESS</a></li>
                                                 </ul>
                                             </li>
                                             <li class="has-dropdown">
-                                                <a href="services.php">SERVICES</a>
+                                                <a href="{{ config('constants.SERVICE_URL') }}">SERVICES</a>
                                                 <ul class="submenu">
-                                                    <li><a href="web_development.php">WEB DEVELOPMENT</a></li>
-                                                    <li><a href="mobile_app_development.php">APP DEVELOPMENT</a></li>
-                                                    <li><a href="digital_marketing.php">DIGITAL MARKETING</a></li>
-                                                    <li><a href="graphics.php">GRAPHICS & LOGO</a></li>
-                                                    <li><a href="testing.php">QA TESTING WEBSITE</a></li>
-                                                    <li><a href="digital_card.php">DIGITAL CARD DESIGN</a></li>
-                                                    <li><a href="hosting.php">HOSTING SERVICE PROVIDER</a></li>
-                                                    <li><a href="support.php">SUPPORT & MAINTAINANCE</a></li>
+                                                    <li><a href="{{ config('constants.WEBDEVELOPMENT_URL') }}">WEB DEVELOPMENT</a></li>
+                                                    <li><a href="{{ config('constants.APPDEVELOPMENT_URL') }}">APP DEVELOPMENT</a></li>
+                                                    <li><a href="{{ config('constants.DIGITALMARKETING_URL') }}">DIGITAL MARKETING</a></li>
+                                                    <li><a href="{{ config('constants.GRAPHICSLOGO_URL') }}">GRAPHICS & LOGO</a></li>
+                                                    <li><a href="{{ config('constants.QATESTING_URL') }}">QA TESTING WEBSITE</a></li>
+                                                    <li><a href="{{ config('constants.DIGITALCARD_URL') }}">DIGITAL CARD DESIGN</a></li>
+                                                    <li><a href="{{ config('constants.HOSTINGSERVICE_URL') }}">HOSTING SERVICE PROVIDER</a></li>
+                                                    <li><a href="{{ config('constants.SUPPORT_URL') }}">SUPPORT & MAINTAINANCE</a></li>
                                                 </ul>
                                             </li>
                                             <li class="has-dropdown">
                                                 <a href="internship.php">INTERNSHIP</a>
                                                 <ul class="submenu">
-                                                    <li><a href="php-internship.php">PHP</a></li>
-                                                    <li><a href="web-design-internship.php">WEB DEVELOPMENT</a></li>
-                                                    <li><a href="flutter-internship.php">FLUTTER</a></li>
-                                                    <li><a href="reactJS-internship.php">REACT JS</a></li>
-                                                    <li><a href="nodeJS-internship.php">NODE JS</a></li>
+                                                    <li><a href="{{ config('constants.PHPINTERNSHIP_URL') }}">PHP</a></li>
+                                                    <li><a href="{{ config('constants.WEBINTERNSHIP_URL') }}">WEB DEVELOPMENT</a></li>
+                                                    <li><a href="{{ config('constants.FLUTTERINTERNSHIP_URL') }}">FLUTTER</a></li>
+                                                    <li><a href="{{ config('constants.REACTINTERNSHIP_URL') }}">REACT JS</a></li>
+                                                    <li><a href="{{ config('constants.NODEINTERNSHIP_URL') }}">NODE JS</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="portfolio.php">Portfolio</a></li>
-                                            <li><a href="blog.php">Blog</a></li>
-                                            <li><a href="contact.php">Contact Us</a></li>
+                                            <li><a href="{{ config('constants.PORTFOLIO_URL') }}">Portfolio</a></li>
+                                            <li><a href="{{ config('constants.BLOG_URL') }}">Blog</a></li>
+                                            <li><a href="{{ config('constants.CONTACT_URL') }}">Contact Us</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -133,14 +115,14 @@
     <div class="tp-offcanvas-wrapper">
         <div class="tp-offcanvas white-bg">
             <div class="offc-top-pattern">
-                <img src="assets/img/hero/nav-parrten-top.png" alt="hero">
+                <img src="{{ asset ('public/images/hero/nav-parrten-top.png')}}" alt="hero">
             </div>
             <div class="tp-offcanvas__top tp-border-bottom pb-30 mb-30">
                 <div class="tp-offcanvas-close">
                     <span><i class="fal fa-times"></i></span>
                 </div>
                 <div class="tp-offcanvas__logo mb-50">
-                    <a href="#"> <img src="assets/img/logo/urlwebwala.png" style="width:100px;" alt="logo"></a>
+                    <a href="#"> <img src="{{ asset ('public/images/logo/urlwebwala.png')}}" style="width:100px;" alt="logo"></a>
                 </div>
                 <p>We believe that every customer deserves a quality experience and we're committed to delivering just
                     that.</p>
@@ -159,7 +141,7 @@
                     Get In Touch
                 </h3>
                 <div class="tp-offcanvas-cta d-flex align-items-center tp-border-bottom pb-20  mb-30">
-                    <span class="icon mr-20"><img src="assets/img/icons/ofp-phone.png" alt="icons"></span>
+                    <span class="icon mr-20"><img src="{{ asset ('public/images/icons/ofp-phone.png')}}" alt="icons"></span>
                     <span>
                         <span class="d-block mb-0">Phone number</span>
                         <b><a href="tel:+918084033396"> Call Us: +91 8084033396 </a></b>
@@ -167,14 +149,14 @@
                 </div>
 
                 <div class="tp-offcanvas-cta d-flex align-items-center tp-border-bottom pb-20 mb-30">
-                    <span class="icon mr-20"><img src="assets/img/icons/ofc-mail-icon.png" alt="icons"></span>
+                    <span class="icon mr-20"><img src="{{ asset ('public/images/icons/ofc-mail-icon.png')}}" alt="icons"></span>
                     <span>
                         <span class="d-block mb-0">Email address</span>
                         <b><a href="mailto:mail.info@urlwebwala.com"> info@urlwebwala.com </a></b>
                     </span>
                 </div>
                 <div class="tp-offcanvas-cta d-flex align-items-center pb-20  mb-30">
-                    <span class="icon mr-20"><img src="assets/img/icons/ofc-locaiton.png" alt="icons"></span>
+                    <span class="icon mr-20"><img src="{{ asset ('public/images/icons/ofc-locaiton.png')}}" alt="icons"></span>
                     <span>
                         <span class="d-block mb-0">
                             Ahemdabad Gujrat (382481)</span>
@@ -202,35 +184,18 @@
             </div>
         </div>
     </div>
-    <!-- <div class="body-overlay"></div>
-    <style>
-        .float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 53.1px;
-            right: 50px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 3px #999;
-            z-index: 100;
-        }
-
-        .my-float {
-            margin-top: 16px;
-        }
-    </style> -->
-
+    
     <a href="#main-wrapper" id="tp-backto-top" class="tp-back-to-top show">
         <span>
-            <i class="fal fa-angle-double-up"></i>
+            <i class="fas fa-angle-double-up" style="margin-top: 20px;"></i>
         </span>
     </a>
-@yield('content')
 
+    {{-- "section extends" --}}
+    
+    @yield('content')
+    
+    {{-- "section extends" --}}
 <footer>
     <div class="bs-footer">
         <div class="container">
@@ -238,7 +203,6 @@
                 <div class="row align-items-center">
                     <div class="col-6">
                         <div class="bs-footer__top-logo">
-                            <!-- <img src="assets/img/logo/urlwebwala.png" style="width:100px;" alt="logo"> -->
                             <h4>Urlwebwala LLP</h4>
                         </div>
                     </div>
@@ -246,24 +210,21 @@
                         <div class="bs-footer__top-social">
                             <span> <a style="background-color: #1877F2;"
                                     href="https://www.facebook.com/share/18aStSgd8m/"><i
-                                        class="fa fa-facebook"></i></a></span>
+                                        class="fas fa-facebook"></i></a></span>
                             <span> <a style="background-color: #1DA1F2;" href="https://clutch.co/profile/urlwebwala"><i
-                                        class="fa fa-twitter"></i></a></span>
+                                        class="fas fa-twitter"></i></a></span>
                             <span> <a style="background-color: #e1306c;"
-                                    href="https://www.instagram.com/urlwebwala?igsh=MXM1aTl3ZDhiN284eQ=="><i
-                                        class="fa fa-instagram"></i></a></span>
+                                    href="https://www.instagram.com/urlwebwala?igsh=MXM1aTl3ZDhiN284eQ=="><i class="fa-brands fa-instagram"></i></a></span>
                             <span> <a style="background-color: #0077B5;"
-                                    href="https://www.linkedin.com/company/urlwebwala-pvt-ltd/"><i
-                                        class="fa fa-linkedin"></i></a></span>
+                                    href="https://www.linkedin.com/company/urlwebwala-pvt-ltd/"><i class="fa-brands fa-linkedin"></i></a></span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="before" style="
-    background: linear-gradient(to right, #fd004c, #fe9000, #fff020, #3edf4b, #3363ff, #b102b7, #fd004c );
-    animation: rainbow-move 6s infinite linear alternate;
-    height: 8px;
-">
+            background: linear-gradient(to right, #fd004c, #fe9000, #fff020, #3edf4b, #3363ff, #b102b7, #fd004c );
+            animation: rainbow-move 6s infinite linear alternate;
+            height: 8px;">
             </div>
             <div class="bs-footer__main pb-10 pt-80 tp-border-bottom">
                 <div class="container">
@@ -271,26 +232,26 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4">
                             <a href="https://www.google.com/search?client=ms-android-nothing-terr1-rso3b&sca_esv=882ccfba8c13de80&hl=en-IN&cs=0&sxsrf=AHTn8zrqcdOavfs4TmGucF8QTVuhs-Zw2g%3A1738597802304&kgmid=%2Fg%2F11vdrr4rzw&q=URLWebwala%20Pvt.Ltd&shndl=30&source=sh%2Fx%2Floc%2Fact%2Fm1%2F4&kgs=0a5d2eba4e4269f4"
                                 target="_blank">
-                                <img src="assets/img/logo/googlereview.png" class="img-fluid" alt="Google Review"
+                                <img src="{{ asset ('public/images/logo/googlereview.png')}}" class="img-fluid" alt="Google Review"
                                     style="max-width: 120px;">
                             </a>
                         </div>
                         <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4">
                             <a href="" target="_blank">
-                                <img src="assets/img/logo/clutch-5.png" class="img-fluid" alt="Clutch Review"
+                                <img src="{{ asset ('public/images/logo/clutch-5.png')}}" class="img-fluid" alt="Clutch Review"
                                     style="max-width: 120px;">
                             </a>
                         </div>
                         <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4">
                             <a href="" target="_blank">
-                                <img src="assets/img/logo/glassdoor.webp" class="img-fluid" alt="Glassdoor Review"
+                                <img src="{{ asset ('public/images/logo/glassdoor.webp')}}" class="img-fluid" alt="Glassdoor Review"
                                     style="max-width: 130px;">
                             </a>
                         </div>
                         <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4">
                             <a href="https://www.justdial.com/Ahmedabad/Url-Webwala-Shakti-School-Road-Chandlodiya/079PXX79-XX79-231108102308-M9X4_BZDET"
                                 target="_blank">
-                                <img src="assets/img/logo/jd-review-removebg-preview.png" class="img-fluid"
+                                <img src="{{ asset ('public/images/logo/jd-review-removebg-preview.png')}}" class="img-fluid"
                                     alt="JustDial Review" style="max-width: 150px;">
                             </a>
                         </div>
@@ -318,12 +279,12 @@
                             <div class="tp-footer__widget mb-40">
                                 <h3 class="tp-footer__widget-title mb-35">Quick Links</h3>
                                 <ul>
-                                    <li><a href="index.php">Home</a></li>
-                                    <li><a href="about.php">About Us</a></li>
-                                    <li><a href="portfolio.php">Portfolio</a></li>
-                                    <li><a href="services.php">Services</a></li>
-                                    <li><a href="internship.php">Internship</a></li>
-                                    <li><a href="contact.php">Contact Us</a></li>
+                                    <li><a href="{{ config('constants.HOME_URL')}}">Home</a></li>
+                                    <li><a href="{{ config('constants.ABOUT_URL') }}">About Us</a></li>
+                                    <li><a href="{{ config('constants.PORTFOLIO_URL') }}">Portfolio</a></li>
+                                    <li><a href="{{ config('constants.SERVICE_URL') }}">Services</a></li>
+                                    <li><a href="{{ config('constants.INTERNSHIP_URL') }}">Internship</a></li>
+                                    <li><a href="{{ config('constants.CONTACT_URL') }}">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -332,12 +293,12 @@
                             <div class="tp-footer__widget mb-40">
                                 <h3 class="tp-footer__widget-title mb-35">Services</h3>
                                 <ul>
-                                    <li><a href="web_development.php">Web Development</a></li>
-                                    <li><a href="mobile_app_development.php">App Development</a></li>
-                                    <li><a href="digital_marketing.php">Digital Marketing</a></li>
-                                    <li><a href="graphics.php">Graphics & Logo</a></li>
-                                    <li><a href="testing.php">QA Testing Website</a></li>
-                                    <li><a href="digital_card.php">Digital Card Design</a></li>
+                                    <li><a href="{{ config('constants.WEBDEVELOPMENT_URL') }}">Web Development</a></li>
+                                    <li><a href="{{ config('constants.APPDEVELOPMENT_URL') }}">App Development</a></li>
+                                    <li><a href="{{ config('constants.DIGITALMARKETING_URL') }}">Digital Marketing</a></li>
+                                    <li><a href="{{ config('constants.GRAPHICSLOGO_URL') }}">Graphics & Logo</a></li>
+                                    <li><a href="{{ config('constants.QATESTING_URL') }}">QA Testing Website</a></li>
+                                    <li><a href="{{ config('constants.DIGITALCARD_URL') }}">Digital Card Design</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -346,19 +307,19 @@
                             <div class="tp-footer__widget mb-40">
                                 <h3 class="tp-footer__widget-title mb-35">Get In Touch</h3>
                                 <div class="tp-footer-cta d-flex align-items-center mb-30">
-                                    <span class="call-icon"><img src="assets/img/icons/placeholder.png" alt=""></span>
+                                    <span class="call-icon"><img src="{{ asset ('public/images/icons/placeholder.png')}}" alt=""></span>
                                     <p class="mb-0">
                                         <span>Ahemdabad Gujrat (382481)</span>
                                     </p>
                                 </div>
                                 <div class="tp-footer-cta d-flex align-items-center mb-30">
-                                    <span class="call-icon"><img src="assets/img/icons/law-mail.png" alt=""></span>
+                                    <span class="call-icon"><img src="{{ asset ('public/images/icons/law-mail.png')}}" alt=""></span>
                                     <p class="mb-0">
                                         <a href="mailto:mail.info@urlwebwala.com">info@urlwebwala.com</a>
                                     </p>
                                 </div>
                                 <div class="tp-footer-cta d-flex align-items-center mb-30">
-                                    <span class="call-icon"><img src="assets/img/footer/call-icon.png" alt=""></span>
+                                    <span class="call-icon"><img src="{{ asset ('public/images/footer/call-icon.png')}}" alt=""></span>
                                     <p class="mb-0">
                                         <a href="tel:+916359102592">Call Us: +91 8084033396</a>
                                     </p>
@@ -394,6 +355,16 @@
                 </div>
             </div>
         </div>
+        {{-- <div class="cookie-container hide">
+            <p class="cookie-text">
+                We use cookies and similar technologies that are necessary to operate the website. Additional cookies
+                are used to perform analysis of website usage. By continuing to use our website, consent to our use of
+                cookies. For more information, please read our <a href="#"> Privacy Policy.</a>
+            </p>
+            <div class="agree">
+                <button>Sounds good!</button>
+            </div>
+        </div> --}}
 </footer>
 
 <script src="{{ asset ('public/js/jquery.js')}}"></script>
@@ -413,6 +384,7 @@
 <script src="{{ asset ('public/js/ajax-form.js')}}"></script>
 <script src="{{ asset ('public/js/headline.js')}}"></script>
 <script src="{{ asset ('public/js/main.js')}}"></script>
+<script src="{{ asset ('public/js/scriptcookies.js')}}"></script>
 </body>
 
 </html>

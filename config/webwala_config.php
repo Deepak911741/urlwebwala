@@ -9,7 +9,7 @@ $baseUrl = 'http://';
 // }
 $webwalaConfig['FRONTEND_URL'] = $baseUrl . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] . '/' : '');
 
-$baseUrl .= (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'].'/' : '');
+$baseUrl .= (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'].'/urlwebwala/' : '');
 
 $webwalaConfig['SITE_URL'] = $baseUrl;
 
