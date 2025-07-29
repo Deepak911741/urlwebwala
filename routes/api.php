@@ -7,8 +7,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => ['checklogin'], 'prefix' => 'admin/v1'], function () {
-    Route::post('login', [App\Http\Controllers\Login::class, 'checkLogin']);
+Route::post('/login', [App\Http\Controllers\Login::class, 'checkLogin']);
+Route::prefix('admin/v1')->group(function () {
     
     Route::get('contact/filter', [App\Http\Controllers\ContactController::class, 'list']);
     Route::post('contact/add', [App\Http\Controllers\ContactController::class, 'add']);

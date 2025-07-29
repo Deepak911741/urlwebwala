@@ -24,3 +24,4 @@ Route::get('blog', [App\Http\Controllers\Frontend::class, 'Blog']);
 Route::get('contact-us', [App\Http\Controllers\Frontend::class, 'contact']);
 Route::get('service', [App\Http\Controllers\Frontend::class, 'Service']);
 Route::get('internship', [App\Http\Controllers\Frontend::class, 'Internship']);
+Route::get('blog/{slug}', [App\Http\Controllers\Frontend::class, 'BlogSlug']);

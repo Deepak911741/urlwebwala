@@ -1,12 +1,12 @@
-@extends(config('constants.FRONTENT_FOLDER') . 'includes/header')
 
+
+@extends(config('constants.FRONTENT_FOLDER') . 'includes/header')
 @section('content')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer" />
       <link rel="stylesheet" href="{{ asset ('public/css/home.css') }}">
-
     @extends('frontent.newslatter.newslatter')
 <main>
     <div class="tp-it-slider-area">
@@ -24,7 +24,7 @@
                                     <p class="mb-50" data-animation="tpfadeUp" data-delay=".6s">We are a software
                                         development company that offers<br>business solutions to help you grow your
                                         company.</p>
-                                    <a href="about.php"
+                                    <a href="{{ config('constants.ABOUT_URL') }}"
                                         class="tp-slider-btn orange-chat-color tp-btn-hover alt-color alt-bg-orange"
                                         data-animation="tpfadeUp" data-delay=".9s">
                                         <span class="mr-10">
@@ -61,7 +61,7 @@
                                         services for branding. using the right tools<br>to develop the most effective
                                         websites.</p>
 
-                                    <a href="about.php"
+                                    <a href="{{ config('constants.ABOUT_URL') }}"
                                         class="tp-slider-btn orange-chat-color tp-btn-hover alt-color alt-bg-orange"
                                         data-animation="tpfadeUp" data-delay=".9s">
                                         <span class="mr-10">
@@ -98,7 +98,7 @@
                                         services for marketing. Our team has many years of experience in the field knows
                                         how to solve any technological problems for you.</p>
 
-                                    <a href="about.php"
+                                    <a href="{{ config('constants.ABOUT_URL') }}"
                                         class="tp-slider-btn orange-chat-color tp-btn-hover alt-bg-orange"
                                         data-animation="tpfadeUp" data-delay=".9s">
                                         <span class="mr-10">
@@ -191,7 +191,7 @@
                                 Specific features of web application development, in which we specialise, include the
                                 many
                                 options we provide.</p>
-                            <a href="about.php"
+                            <a href="{{ config('constants.ABOUT_URL') }}"
                                 class="tp-slider-btn orange-chat-color tp-btn-hover alt-color alt-bg-orange"
                                 data-animation="tpfadeUp" data-delay=".9s">
                                 <span class="mr-10">
@@ -257,7 +257,7 @@
                             <div class="it-servicce__item-img mb-35">
                                 <img src="{{ asset('public/images/services/icon/it-service-1.png')}}" alt="services">
                             </div>
-                            <h3 class="it-service__item-title mb-20"><a href="web_development.php">Web Development</a>
+                            <h3 class="it-service__item-title mb-20"><a href="{{ config('constants.WEBDEVELOPMENT_URL') }}">Web Development</a>
                             </h3>
                             <p class="mb-0" style="visibility: visible;animation-name: tpfadeUp;font-size: 18px;">To
                                 attract and keep consumers, get a strong website developed from scratch
@@ -269,7 +269,7 @@
                             <div class="it-servicce__item-img mb-35">
                                 <img src="{{ asset('public/images/services/icon/it-service-2.png')}}" alt="services">
                             </div>
-                            <h3 class="it-service__item-title mb-20"><a href="mobile_app_development.php">App
+                            <h3 class="it-service__item-title mb-20"><a href="{{ config('constants.APPDEVELOPMENT_URL') }}">App
                                     Development</a></h3>
                             <p class="mb-0" style="visibility: visible;animation-name: tpfadeUp;font-size: 18px;">We
                                 create attractive mobile applications that boost consumer engagement and
@@ -281,7 +281,7 @@
                             <div class="it-servicce__item-img mb-35">
                                 <img src="{{ asset('public/images/services/icon/it-service-3.png')}}" alt="services">
                             </div>
-                            <h3 class="it-service__item-title mb-20"><a href="digital_marketing.php">Digital
+                            <h3 class="it-service__item-title mb-20"><a href="{{ config('constants.DIGITALMARKETING_URL') }}">Digital
                                     Marketing</a>
                             </h3>
                             <p class="mb-0" style="visibility: visible;animation-name: tpfadeUp;font-size: 18px;">We
@@ -296,7 +296,7 @@
                             <div class="it-servicce__item-img mb-35">
                                 <img src="{{ asset('public/images/services/icon/it-service-4.png')}}" alt="services">
                             </div>
-                            <h3 class="it-service__item-title mb-20"><a href="graphics.php">Graphics & Logo</a></h3>
+                            <h3 class="it-service__item-title mb-20"><a href="{{ config('constants.GRAPHICSLOGO_URL') }}">Graphics & Logo</a></h3>
                             <p class="mb-0" style="visibility: visible;animation-name: tpfadeUp;font-size: 18px;">For a
                                 variety of platforms, we transform conceptual ideas into clear,
                                 practical,
@@ -308,7 +308,7 @@
                             <div class="it-servicce__item-img mb-35">
                                 <img src="{{ asset('public/images/services/icon/it-service-4.png')}}" alt="services">
                             </div>
-                            <h3 class="it-service__item-title mb-20"><a href="testing.php">QA Testing Website</a></h3>
+                            <h3 class="it-service__item-title mb-20"><a href="{{ config('constants.QATESTING_URL') }}">QA Testing Website</a></h3>
                             <p class="mb-0" style="visibility: visible;animation-name: tpfadeUp;font-size: 18px;">
                                 Applications are thoroughly tested using industry-standard testing approach
                                 and
@@ -320,7 +320,7 @@
                             <div class="it-servicce__item-img mb-35">
                                 <img src="{{ asset('public/images/services/icon/it-service-6.png')}}" alt="services">
                             </div>
-                            <h3 class="it-service__item-title mb-20"><a href="digital_card.php">Digital Card Design</a>
+                            <h3 class="it-service__item-title mb-20"><a href="{{ config('constants.DIGITALCARD_URL') }}">Digital Card Design</a>
                             </h3>
                             <p class="mb-0" style="visibility: visible;animation-name: tpfadeUp;font-size: 18px;">The
                                 electronic equivalent of a paper card is a digital card. Digital cards
@@ -369,7 +369,7 @@
                             hospitality, education, travel, and automotive.
                         </p><br>
                         <div class="tp-sv-tabs-btn-wrapper mb-30">
-                            <a href="services.php" class="tp-white-btn">
+                            <a href="{{ config('constants.SERVICE_URL') }}" class="tp-white-btn">
                                 More Services
                                 <span class="ml-10">
                                     <i class="fas fa-long-arrow-right"></i>
@@ -542,16 +542,11 @@
                 </div>
                 <div class="logos">
                     <div class="logos-slide">
-                        <img src="{{ asset('public/images/clints/cluix.webp')}}" />
-                        <img src="{{ asset('public/images/clints/1.png')}}" />
-                        <img src="{{ asset('public/images/clints/2.webp')}}" />
-                        <img src="{{ asset('public/images/clints/3.png')}}" />
-                        <img src="{{ asset('public/images/clints/4.png') }}" style="height: 100px; width: 120px;" />
-                        <img src="{{ asset('public/images/clints/5.png') }}" style="height: 80px; width: 100px;" />
-                        <img src="{{ asset('public/images/clints/8.png') }}" />
-                        <img src="{{ asset('public/images/clints/logo.webp')}}" style="height: 70px; width: 230px;" />
-                        <img src="{{ asset('public/images/businesspartners/2.png')}}" style="height: 100px; width: 200px;"/>
-                        <!-- <img src="https://tmb001.vercel.app/images/partners/logo-closeoutnj.png" /> -->
+                    @if (isset($clients) && !empty($clients))
+                        @foreach ($clients as $client)
+                            <img src="{{ (isset($client) && !empty($client->v_image) ? getUploadedAssetUrl($client->v_image) : '') }}" alt="{{ $client->v_name }}" style="height: 100px; width: 200px;"/>
+                        @endforeach
+                    @endif
                     </div>
                 </div>
             </div>
@@ -589,91 +584,42 @@
             <div class="container">
                 <div class="tp-it-testi-active swiper-container">
                     <div class="swiper-wrapper">
-                        <div class="it-testimonial swiper-slide">
-                            <div class="it-testimonial-box p-relative">
-                                <div class="it-testimonial-box__ratting">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
+                        @if(isset($testimonials) && !empty($testimonials))
+                            @foreach ($testimonials as $testimonial)
+                                <div class="it-testimonial swiper-slide">
+                                    <div class="it-testimonial-box p-relative">
+                                        <div class="it-testimonial-box__ratting">
+                                            @php
+                                                $rating = isset($testimonial->v_rating) ? (int)$testimonial->v_rating : 0;
+                                            @endphp
+
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                @if ($i <= $rating)
+                                                    <i class="fas fa-star"></i>
+                                                @else
+                                                    <i class="far fa-star"></i>
+                                                @endif
+                                            @endfor
+                                        </div>
+                                        <div class="it-testimonial-box__review">
+                                            {{ (isset($testimonial->v_designation) && !empty($testimonial->v_designation) ? $testimonial->v_designation : '') }}
+                                        </div>
+                                        <div class="it-testimonial-bg">
+                                            <img src="assets/img/testimonial/testi-icon-bg.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="tp-testimonial-reviewer d-flex align-items-center ml-40">
+                                        <div class="tesi-reviewer-avata mr-15">
+                                          <img src="{{ (isset($testimonial->v_image) && !empty($testimonial->v_image) ? getUploadedAssetUrl($testimonial->v_image) : '') }}" alt="deepak" style="width: 50px; height: 50px; border-radius: 50%;">
+                                        </div>
+                                        <div class="it-tesi-reviewer-name">
+                                            <h4 class="mb-5 vogue-text-color">{{ (isset($testimonial->v_client_name) && !empty($testimonial->v_client_name) ? $testimonial->v_client_name : '') }}</h4>
+                                            <span>{{ (isset($testimonial->v_states) && !empty($testimonial->v_states) ? $testimonial->v_states : '') }} </span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="it-testimonial-box__review">
-                                    “ I've been working with this company for over 2 years and never once
-                                    had an issue with any of their work. They are very professional &
-                                    their rates are reasonable!I'm extremely happy with their service. ”
-                                </div>
-                                <div class="it-testimonial-bg">
-                                    <img src="assets/img/testimonial/testi-icon-bg.png" alt="">
-                                </div>
-                            </div>
-                            <div class="tp-testimonial-reviewer d-flex align-items-center ml-40">
-                                <!--<div class="tesi-reviewer-avata mr-15">-->
-                                <!--   <img src="assets/img/testimonial/testi-avata-1.png" alt="">-->
-                                <!--</div>-->
-                                <div class="it-tesi-reviewer-name">
-                                    <h4 class="mb-5 vogue-text-color">N.H.Enterprise</h4>
-                                    <span>Founder</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="it-testimonial swiper-slide">
-                            <div class="it-testimonial-box p-relative">
-                                <div class="it-testimonial-box__ratting">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <div class="it-testimonial-box__review">
-                                    “ It's the best it services company in the market, hands down.
-                                    All their clients love them and they never let me down. No one
-                                    has ever been as reliable as website development for me. ”
-                                </div>
-                                <div class="it-testimonial-bg">
-                                    <img src="assets/img/testimonial/testi-icon-bg.png" alt="">
-                                </div>
-                            </div>
-                            <div class="tp-testimonial-reviewer d-flex align-items-center ml-40">
-                                <!--<div class="tesi-reviewer-avata mr-15">-->
-                                <!--   <img src="assets/img/testimonial/testi-avata-3.png" alt="">-->
-                                <!--</div>-->
-                                <div class="it-tesi-reviewer-name">
-                                    <h4 class="mb-5 vogue-text-color">Consultancy</h4>
-                                    <span>HR, Manager.</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="it-testimonial swiper-slide">
-                            <div class="it-testimonial-box p-relative">
-                                <div class="it-testimonial-box__ratting">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <div class="it-testimonial-box__review">
-                                    “ I have been working with various IT companies for some
-                                    time but in this company I find a lot of professionalism &nbsp;
-                                    ,good prices and a great quality of service. I recommend
-                                    this company to all my friends. ”
-                                </div>
-                                <div class="it-testimonial-bg">
-                                    <img src="assets/img/testimonial/testi-icon-bg.png" alt="">
-                                </div>
-                            </div>
-                            <div class="tp-testimonial-reviewer d-flex align-items-center ml-40">
-                                <!--<div class="tesi-reviewer-avata mr-15">-->
-                                <!--   <img src="assets/img/testimonial/testi-avata-4.png" alt="">-->
-                                <!--</div>-->
-                                <div class="it-tesi-reviewer-name">
-                                    <h4 class="mb-5 vogue-text-color">Manish Patel </h4>
-                                    <span>IT Consulting</span>
-                                </div>
-                            </div>
-                        </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
@@ -854,7 +800,7 @@
                         </div>
                         <div class="col-md-4 d-none d-md-block text-end">
                             <div class="it-testi-navigation p-relative pt-40">
-                                <a href="blog.php"
+                                <a href="{{ config('constants.BLOG_URL') }}"
                                     class="tp-slider-btn orange-chat-color tp-btn-hover alt-color alt-bg-orange"
                                     data-animation="tpfadeUp" data-delay=".9s">
                                     <span class="mr-10">
@@ -867,82 +813,31 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>  
             </div>
             <div class="unique-card-container">
+                @if (isset($blogs) && !empty($blogs))
+                @foreach ($blogs as $blog)
                 <div class="unique-card">
-                    <img src="{{ asset ('public/images/newimages/5199286.jpg')}}" alt="tech_image">
+                    <img src="{{ (isset($blog->v_image) && !empty($blog->v_image) ? getUploadedAssetUrl($blog->v_image) : asset('public/images/newimages/5199286.jpg')) }}" alt="blog_image" style="height: 250px; width: 100%; object-fit: cover;">
                     <div class="unique-card-content">
-                        <span class="unique-category-tag unique-tech">Technology</span>
-                        <h4 class="it-service__item-title">What's new in 2022 Tech</h4>
+                        <span class="unique-category-tag unique-tech">{{ (isset($blog) && !empty($blog->categoryInfo->v_category_name) ? $blog->categoryInfo->v_category_name : '') }}</span>
+                        <h4 class="it-service__item-title"><a href="{{ config('constants.BLOG_URL') . '/' . (isset($blog) && !empty($blog->v_seo_url) ? $blog->v_seo_url : '') }}" target="_blank">{{ (isset($blog) && !empty($blog->v_title) ? $blog->v_title : '') }}</a></h4>
                         <p class="text-grey wow tpfadeUp"
-                            style="visibility: visible;animation-name: tpfadeUp;font-size: 18px;">Lorem ipsum dolor
-                            sit
-                            amet consectetur adipisicing elit. Sequi perferendis
-                            molestiae
-                            non
-                            nemo
-                            doloribus.</p>
+                            style="visibility: visible;animation-name: tpfadeUp;font-size: 18px;">{{ $blog->v_content }}</p>
                     </div>
                     <div class="unique-card-footer">
                         <div class="unique-author">
-                            <img src="{{ asset ('public/images/logo/fevicon.png')}}" alt="user1" style="height: 40px; width: 40px">
+                            <img src="{{ asset('public/images/logo/fevicon.png') }}" alt="user1" style="height: 40px; width: 40px">
                             <div>
-                                <h5>Urlwebwala</h5>
-                                <small>2h ago</small>
+                                <h5>{{ (isset($blog->v_author_name) && !empty($blog->v_author_name) ? $blog->v_author_name : '') }}</h5>
+                                <small>{{ (isset($blog->dt_created_at) && !empty($blog->dt_created_at) ? $blog->dt_created_at : '') }}</small>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="unique-card">
-                    <img src="{{ asset ('public/images/newimages/5199286.jpg')}}" alt="food_image">
-                    <div class="unique-card-content">
-                        <span class="unique-category-tag unique-food">Technology</span>
-                        <h4 class="it-service__item-title">Delicious Food</h4>
-                        <p class="text-grey wow tpfadeUp"
-                            style="visibility: visible;animation-name: tpfadeUp;font-size: 18px;">Lorem ipsum dolor
-                            sit
-                            amet consectetur adipisicing elit. Sequi perferendis
-                            molestiae
-                            non
-                            nemo
-                            doloribus.</p>
-                    </div>
-                    <div class="unique-card-footer">
-                        <div class="unique-author">
-                            <img src="{{ asset ('public/images/logo/fevicon.png')}}" alt="user1" style="height: 40px; width: 40px">
-                            <div>
-                                <h5>Urlwebwala</h5>
-                                <small>Yesterday</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="unique-card">
-                    <img src="{{ asset ('public/images/newimages/5199286.jpg')}}" alt="food_image">
-                    <div class="unique-card-content">
-                        <span class="unique-category-tag unique-food">Unity Development</span>
-                        <h4 class="it-service__item-title">Delicious Food</h4>
-                        <p class="text-grey wow tpfadeUp"
-                            style="visibility: visible;animation-name: tpfadeUp;font-size: 18px;">Lorem ipsum dolor
-                            sit
-                            amet consectetur adipisicing elit. Sequi perferendis
-                            molestiae
-                            non
-                            nemo
-                            doloribus.</p>
-                    </div>
-                    <div class="unique-card-footer">
-                        <div class="unique-author">
-                            <img src="{{ asset ('public/images/logo/fevicon.png')}}" alt="user1" style="height: 40px; width: 40px">
-                            <div>
-                                <h5>Urlwebwala</h5>
-                                <small>Yesterday</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+                @endif
             </div>
         </div>
 

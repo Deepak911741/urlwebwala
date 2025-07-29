@@ -248,7 +248,7 @@ l .newsletter-dropdown-wrapper select {
                 <div class="newsletter-input-wrapper">
                     <img src="{{asset ('public/images/newslatter/email-svgrepo-com.svg')}}"
                         class="newsletter-input-icon" alt="Email Icon">
-                    <input type="email" id="email" placeholder="Enter Email address" required />
+                    <input type="email  " id="email" placeholder="Enter Email address" required />
                 </div>
 
                 <div class="newsletter-input-wrapper">
@@ -261,23 +261,16 @@ l .newsletter-dropdown-wrapper select {
                     <div class="newsletter-select-icon-wrapper">
                         <select id="requirements" name="requirements" required>
                             <option value="#" disabled selected>Select an option</option>
-                            <option value="Web Development">Web Development</option>
-                            <option value="Android Development">Android Development</option>
-                            <option value="iOS App Development">iOS App Development</option>
-                            <option value="HRMS & CRM Development">HRMS & CRM Development</option>
-                            <option value="Vendor Portal Development">Vendor Portal Development</option>
-                            <option value="Digital Marketing">Digital Marketing</option>
-                            <option value="UI/UX Design">UI/UX Design</option>
-                            <option value="SEO Services">SEO Services</option>
-                            <option value="Support & Maintenance">Support & Maintenance</option>
-                            <option value="Other">Other</option>
+                            @if (isset($services) && !empty($services))
+                                @foreach ($services as $service)
+                                    <option value="{{ (isset($service) && !empty($service->i_id) ? Webwala::encode($service->i_id) : 0) }}">{{ (isset($service) && !empty($service->v_service_name) ? ($service->v_service_name) : 0) }}</option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
                 </div>
-
                 <button type="submit" class="newsletter-subscribe-btn">Subscribe</button>
             </form>
-
             <button class="newsletter-no-thanks" onclick="closePopup()">No, Thanks</button>
             <p class="newsletter-privacy-text">
                 By subscribing to our newsletter you agree to our

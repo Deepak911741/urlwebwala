@@ -5,21 +5,22 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo (isset($pageTitle) && !empty($pageTitle) ? $pageTitle : 'Urlwebwala LLP'); ?></title>
+    <title><?php echo (isset($pageTitle) && !empty($pageTitle) ? $pageTitle : 'Urlwebwala LLP'); ?> | Urlwebwala LLP</title>
     <meta name="description" content="<?php echo (isset($description) && !empty($description) ? $description : ' '); ?>">
     <meta name="keywords" content="<?php echo (isset($keywords) && !empty($keywords) ? $keywords : ''); ?>">
     <meta name="author" content="<?php echo (isset($author) && !empty($author) ? $author : 'Urlwebwala LLP'); ?>">
+    <meta name="robots" content="{{ isset($robots) ? $robots : 'index, follow' }}">
+    <link rel="canonical" href="{{ isset($canonical) ? $canonical : 'https://urlwebwala.com' }}">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.urlwebwala.com">
-    <meta property="og:site_name" content="">
+    <meta property="og:url" content="{{ isset($canonical) ? $canonical : 'https://urlwebwala.com' }}">
+    <meta property="og:site_name" content="Urlwebwala LLP">
     <meta property="og:image" content="https://urlwebwala.com/assets/metalog.png">
-    <meta property="og:title" content="">
-    <meta property="og:description" content="">
-    <meta property="og:image:alt" content="">
+    <meta property="og:title" content="{{ isset($pageTitle) ? $pageTitle : 'Urlwebwala LLP' }}">
+    <meta property="og:description" content="{{ isset($description) ? $description : 'Urlwebwala LLP is a leading IT company providing web development, app development, digital marketing, and more.'}}">
+    <meta property="og:image:alt" content="Urlwebwala LLP">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <link rel="icon" type="image/x-icon" href="./assets/img/logo/fev.png">
-    <link rel="canonical" href="https://www.urlwebwala.com">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/logo/fev.png') }}">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZ5QVDBENP"></script>
     <link rel="stylesheet" href="{{ asset ('public/css/style1.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/bootstrap.min.css')}}">

@@ -101,6 +101,13 @@ if (! function_exists('dbDate')) {
 	}
 }
 
+if (!function_exists('formatDateFancy')) {
+    function formatDateFancy($date)
+    {
+        return date('F d, Y', strtotime($date));
+    }
+}
+
 if (! function_exists('enumText')) {
 	function enumText($value) {
 		$result = '';
