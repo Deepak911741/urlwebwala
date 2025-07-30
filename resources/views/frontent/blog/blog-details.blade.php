@@ -255,9 +255,9 @@
                 <div class="col-xxl-12">
                     <div class="breadcrumb__content p-relative z-index-1">
                         <div class="breadcrumb__list mb-10">
-                            <span><a href="index.php">Home</a></span>
+                            <span><a href="{{ config('constants.HOME_URL') }}">Home</a></span>
                             <span class="dvdr dvdr-line"></span>
-                            <span><a href="blog.php">Blog</a></span>
+                            <span><a href="{{ config('constants.BLOG_URL') }}">Blog</a></span>
                             <span class="dvdr dvdr-line"></span>
                             <span class="tp-bc-acive-menu">{{ (isset($blog) && !empty($blog->v_title) ? $blog->v_title : '') }}</span>
                         </div>

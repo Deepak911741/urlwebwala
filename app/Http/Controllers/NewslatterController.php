@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Webwala\Webwala;
 use App\Models\newLatterModel;
+use App\Models\serviceModel;
+use App\Models\Setting_model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -105,7 +107,7 @@ class NewslatterController extends MY_Controller
 	}
 
     public function add(Request $request){
-
+        
 		$formValidation = [];
 		$formValidation['email'] = ['required'];
 		$formValidation['mobile'] = ['required'];
@@ -116,23 +118,47 @@ class NewslatterController extends MY_Controller
 		]);
 		
 		if ($validator->fails()){
-			return apiResponse(404, $validator->errors()->first());
-			// return redirect()->back()->withErrors($validator)->withInput();
+			return redirect()->back()->withErrors($validator)->withInput();
 		}
 		
 		$recordData = [];
 		$recordData['v_email'] = (checkNotEmptyString($request->input('email')) ? trim($request->input('email')) : null);
 		$recordData['v_mobile'] = (checkNotEmptyString($request->input('mobile')) ? trim($request->input('mobile')) : null);
-		$recordData['i_service_id'] = (checkNotEmptyString($request->input('service_id')) ? trim($request->input('service_id')) : null);
+		$recordData['i_service_id'] = (checkNotEmptyString($request->input('service_id')) ? Webwala::decode($request->input('service_id')) : null);
 		
-		$successMessage = trans ( 'messages.success-create', ['module' => $this->moduleName]);
-		$errorMessage = trans ( 'messages.error-create', ['module' => $this->moduleName]);
+		$successMessage = trans('🎉 Thank you for subscribing! <br> You’re now part of the URLWebwala family. We’ll keep you updated with the latest news and special offers.');
+		$errorMessage = trans('newslatter-subscribe-error');
 		
 		$result = false;
 		
 		DB::beginTransaction();
 		
 		try{
+            $whereData = [];
+			$whereData['i_id'] = $recordData['i_service_id'];
+			$whereData['singleRecord'] = true;
+			$serviceInfo = (new serviceModel)->getRecordDetails($whereData);
+
+			$settingModel = new Setting_model();
+
+			$where = [];
+			$where['isBackendRequest'] = true;
+			$settingsInfo = $settingModel->getRecordDetails($where);
+			$recordType = "Newsletter";
+			$mailData = [];
+			$mailData['mobile'] = (checkNotEmptyString($request->input('mobile')) ? trim($request->input('mobile')) : '');
+			$mailData['email'] = (checkNotEmptyString($request->input('email')) ? trim($request->input('email')) : '');
+			$mailData['serviceName'] = (isset($serviceInfo->v_service_name) ? $serviceInfo->v_service_name : '');
+			$mailData['recordType'] = $recordType;
+
+			$config = [];
+			$config['to'] = $mailData['email'];
+			$config['subject'] = "New ".$recordType." Mail From " . ( isset($settingsInfo->v_mail_title) && checkNotEmptyString($settingsInfo->v_mail_title) ? $settingsInfo->v_mail_title : '' );
+			$config['mailData'] = $mailData;
+			$config['viewName'] = 'mailtemplate/newslatter-mailtemplate';
+
+			$sendMail = sendMailSMTP($config);
+
 			$this->crudModel->insertTableData( config('constants.NEWSLATTER_TABLE') , $recordData);
 			$result = true;
 		}catch(\Exception $e){
@@ -142,17 +168,14 @@ class NewslatterController extends MY_Controller
 		}
 		
 		if( $result != false ){
-
 			DB::commit();
-			return apiResponse(200, 'success', $successMessage);
-			// Webwala::setFlashMessage('success', $successMessage);
+			Webwala::setFlashMessage('success', $successMessage);
 		} else {
 			DB::rollBack();
-			return apiResponse(500, 'error', $errorMessage);
-			// Webwala::setFlashMessage('danger', $errorMessage);
+			Webwala::setFlashMessage('danger', $errorMessage);
 		}
 		
-		// return redirect($this->redirectUrl);
+		return redirect(config('constants.HOME_URL'));
 		
 	}
 }

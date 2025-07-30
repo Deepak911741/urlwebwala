@@ -88,8 +88,6 @@
     width: 100%;
     margin-bottom: 16px;
 }
-
-
 .nice-select {
     width: 100% !important;
     display: block;
@@ -232,8 +230,14 @@ l .newsletter-dropdown-wrapper select {
         right: 20px;
     }
 }
+.input-error{
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
 </style>
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 <div class="newsletter-overlay" id="popup">
     <div class="newsletter-popup-container">
         <div class="newsletter-popup-image">
@@ -243,24 +247,25 @@ l .newsletter-dropdown-wrapper select {
             <button class="newsletter-close-btn" onclick="closePopup()">×</button>
             <h2>Subscribe to Our Newsletter</h2>
             <p>Subscribe to our newsletter & get notifications about discounts.</p>
-
-            <form id="newsletterForm">
+            {{ Webwala::readMessage() }}
+            <form id="newsletterForm" action="{{ config('constants.NEWSLATTER_URL') . '/add' }}" method="POST">
+                @csrf
                 <div class="newsletter-input-wrapper">
                     <img src="{{asset ('public/images/newslatter/email-svgrepo-com.svg')}}"
                         class="newsletter-input-icon" alt="Email Icon">
-                    <input type="email  " id="email" placeholder="Enter Email address" required />
+                    <input type="email" name="email" id="email" placeholder="Enter Email address"/>
                 </div>
 
                 <div class="newsletter-input-wrapper">
                     <img src="{{asset ('public/images/newslatter/phone-plus-alt-svgrepo-com.svg')}}"
                         class="newsletter-input-icon" alt="Phone Icon">
-                    <input type="tel" id="phone" placeholder="Enter Phone Number" required />
+                    <input type="tel" id="mobile" name="mobile" placeholder="Enter Phone Number"/>
                 </div>
 
                 <div class="newsletter-dropdown-wrapper">
                     <div class="newsletter-select-icon-wrapper">
-                        <select id="requirements" name="requirements" required>
-                            <option value="#" disabled selected>Select an option</option>
+                        <select id="requirements" name="service_id" required>
+                            <option value="" disabled selected>Select an option</option>
                             @if (isset($services) && !empty($services))
                                 @foreach ($services as $service)
                                     <option value="{{ (isset($service) && !empty($service->i_id) ? Webwala::encode($service->i_id) : 0) }}">{{ (isset($service) && !empty($service->v_service_name) ? ($service->v_service_name) : 0) }}</option>
@@ -274,13 +279,50 @@ l .newsletter-dropdown-wrapper select {
             <button class="newsletter-no-thanks" onclick="closePopup()">No, Thanks</button>
             <p class="newsletter-privacy-text">
                 By subscribing to our newsletter you agree to our
-                <a href="privacypolicy.php">Privacy Policy</a>.
+                <a href="{{ config('constants.PRIVICYPOLICY_URL') }}">Privacy Policy</a>.
             </p>
         </div>
     </div>
 </div>
 
 <script>
+    $(document).ready(function () {
+    $.validator.addMethod("notDefault", function (value) {
+        return value !== "#";
+    }, "Please select a valid option.");
+
+    $("#newsletterForm").validate({
+        errorClass: "input-error",
+        rules: {
+            email: {
+                required: true,
+                email: true
+            },
+            mobile: {
+                required: true,
+                // digits: true,
+            },
+            service_id: {
+                required: true,
+            }
+        },
+        messages: {
+            email: {
+                 required: '{{ trans("messages.required-enter-field-validation" , [ "fieldName" => trans("messages.email") ]) }}',
+            },
+            mobile: {
+                required: '{{ trans("messages.required-enter-field-validation" , [ "fieldName" => trans("messages.mobile-no") ]) }}',
+            },
+            service_id: {
+                required: '{{ trans("messages.required-select-field-validation" , [ "fieldName" => trans("messages.service") ]) }}',
+            }
+        },
+        submitHandler: function (form) {
+            form.submit();
+        }
+    });
+});
+
     function closePopup() {
         document.getElementById("popup").style.display = "none";
     }

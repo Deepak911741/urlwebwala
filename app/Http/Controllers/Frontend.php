@@ -152,6 +152,7 @@ class Frontend extends Guest
 
 	public function Contact() {
 		$data = $this->getSeoContent('contact');
+		$data['services'] = (new serviceModel)->getRecordDetails();
 		return $this->guestView($this->adminFolderName . 'contact.contact', $data);
 	}
 
@@ -185,6 +186,16 @@ class Frontend extends Guest
 		$data['related_blogs'] = (new blogModel)->getRecordDetails($whereData);
 
 		return $this->guestView($this->adminFolderName . 'blog.blog-details', $data);
+	}
+
+	public function PrivicyPolicy() {
+		$data = $this->getSeoContent('privacypolicy');
+		return $this->guestView($this->adminFolderName . 'other.privacypolicy', $data);
+	}
+
+	public function TermCondition() {
+		$data = $this->getSeoContent('termcondition');
+		return $this->guestView($this->adminFolderName . 'other.privacypolicy', $data);
 	}
 
 }

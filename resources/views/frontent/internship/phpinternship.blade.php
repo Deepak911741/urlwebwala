@@ -11,7 +11,7 @@
                 <div class="col-xxl-12">
                     <div class="breadcrumb__content p-relative z-index-1">
                         <div class="breadcrumb__list mb-10">
-                            <span><a href="index.php">Home</a></span>
+                            <span><a href="{{ config('constants.HOME_URL') }}">Home</a></span>
                             <span class="dvdr dvdr-line"></span>
                             <span class="tp-bc-acive-menu">php internship</span>
                         </div>
@@ -173,7 +173,7 @@
                 <h3><b>Course Curriculum</b></h3>
 
                 <div class="center-container">
-                    <a href="about.php" class="tp-slider-btn orange-chat-color tp-btn-hover alt-color alt-bg-orange"
+                    <a href="{{ config('constants.ABOUT_URL') }}" class="tp-slider-btn orange-chat-color tp-btn-hover alt-color alt-bg-orange"
                         data-animation="tpfadeUp" data-delay=".9s">
                         <span class="mr-10">
                             <i class="fas fa-comments"></i>

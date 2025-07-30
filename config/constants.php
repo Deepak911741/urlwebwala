@@ -110,5 +110,9 @@ $constants = [
 	'CONTACT_URL' => $webwalaConfig['SITE_URL'] . 'contact-us',
 	'SERVICE_URL' => $webwalaConfig['SITE_URL'] . 'service',
 	'INTERNSHIP_URL' => $webwalaConfig['SITE_URL'] . 'internship',
+	'PRIVICYPOLICY_URL' => $webwalaConfig['SITE_URL'] . 'privicypolicy',
+	'TERMSCONDITION_URL' => $webwalaConfig['SITE_URL'] . 'termcondition',
+	'NEWSLATTER_URL' => $webwalaConfig['SITE_URL'] . 'newslatter',
+	
 ];
 return array_merge($constants , $webwalaConfig );

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\contectModel;
 use App\Helpers\Webwala\Webwala;
+use App\Models\serviceModel;
+use App\Models\Setting_model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -16,38 +18,34 @@ class ContactController extends MY_Controller
         $this->crudModel = new contectModel();
 		$this->moduleName = trans('messages.contact-us');
         $this->tableName = config('constants.ADMIN_FOLDER');
-        $this->redirectUrl = config('constants.ADMIN_FOLDER') . '/contect';
+        $this->redirectUrl = config('constants.CONTACT_URL');
     }
 
     public function add(Request $request){
-
+		
 		$formValidation = [];
-		$formValidation['firstName'] = ['required'];
-		$formValidation['lastName'] = ['required'];
+		$formValidation['name'] = ['required'];
 		$formValidation['email'] = ['required'];
-		$formValidation['mobile'] = ['required'];
+		$formValidation['phone'] = ['required'];
 		
 		$validator = Validator::make ( $request->all (), $formValidation , [
 			'firstName.required' => trans("messages.required-enter-field-validation" , [ "fieldName" => trans("messages.first-name") ]),
-			'lastName.required' => trans("messages.required-enter-field-validation" , [ "fieldName" => trans("messages.last-name") ]),
 			'email.required' => trans("messages.required-enter-field-validation" , [ "fieldName" => trans("messages.email-id") ]),
 			'mobile.required' => trans("messages.required-enter-field-validation" , [ "fieldName" => trans("messages.mobile-no") ]),
 		]);
 		
 		if ($validator->fails()){
-			return apiResponse(404, $validator->errors()->first());
-			// return redirect()->back()->withErrors($validator)->withInput();
+			return redirect()->back()->withErrors($validator)->withInput();
 		}
 		
 		$recordData = [];
-		$recordData['v_firstname'] = (checkNotEmptyString($request->input('firstName')) ? trim($request->input('firstName')) : '');
-		$recordData['v_lastname'] = (checkNotEmptyString($request->input('lastName')) ? trim($request->input('lastName')) : '');
+		$recordData['v_firstname'] = (checkNotEmptyString($request->input('name')) ? trim($request->input('name')) : '');
 		$recordData['v_email'] = (checkNotEmptyString($request->input('email')) ? trim($request->input('email')) : null);
-		$recordData['v_mobile'] = (checkNotEmptyString($request->input('mobile')) ? trim($request->input('mobile')) : null);
-		$recordData['i_service_id'] = (checkNotEmptyString($request->input('service_id')) ? trim($request->input('service_id')) : null);
-		$recordData['v_message'] = (checkNotEmptyString($request->input('mobile')) ? trim($request->input('mobile')) : null);
+		$recordData['v_mobile'] = (checkNotEmptyString($request->input('phone')) ? trim($request->input('phone')) : null);
+		$recordData['i_service_id'] = (!empty($request->input('service_id')) ? Webwala::decode($request->input('service_id')) : 0);
+		$recordData['v_message'] = (checkNotEmptyString($request->input('message')) ? trim($request->input('message')) : null);
 		
-		$successMessage = trans ( 'messages.success-create', ['module' => $this->moduleName]);
+		$successMessage = trans ('📩 Thank you for reaching out! We\'ve received your message and our team will get back to you shortly.');
 		$errorMessage = trans ( 'messages.error-create', ['module' => $this->moduleName]);
 		
 		$result = false;
@@ -55,6 +53,33 @@ class ContactController extends MY_Controller
 		DB::beginTransaction();
 		
 		try{
+			$whereData = [];
+			$whereData['i_id'] = $recordData['i_service_id'];
+			$whereData['singleRecord'] = true;
+			$serviceInfo = (new serviceModel)->getRecordDetails($whereData);
+
+			$settingModel = new Setting_model();
+
+			$where = [];
+			$where['isBackendRequest'] = true;
+			$settingsInfo = $settingModel->getRecordDetails($where);
+			$recordType = "Contact Us";
+			$mailData = [];
+			$mailData['name'] = (checkNotEmptyString($request->input('name')) ? trim($request->input('name')) : '');
+			$mailData['mobile'] = (checkNotEmptyString($request->input('phone')) ? trim($request->input('phone')) : '');
+			$mailData['email'] = (checkNotEmptyString($request->input('email')) ? trim($request->input('email')) : '');
+			$mailData['serviceName'] = (isset($serviceInfo->v_service_name) ? $serviceInfo->v_service_name : '');
+			$mailData['commentMessage'] = (checkNotEmptyString($request->input('message')) ? trim($request->input('message')) : null);
+			$mailData['recordType'] = $recordType;
+
+			$config = [];
+			$config['to'] = $mailData['email'];
+			$config['subject'] = "New ".$recordType." Mail From " . ( isset($settingsInfo->v_mail_title) && checkNotEmptyString($settingsInfo->v_mail_title) ? $settingsInfo->v_mail_title : '' );
+			$config['mailData'] = $mailData;
+			$config['viewName'] = 'mailtemplate/contact-us-mailtemplate';
+
+			$sendMail = sendMailSMTP($config);
+		
 			$this->crudModel->insertTableData( config('constants.CONTACT_MASTER') , $recordData);
 			$result = true;
 		}catch(\Exception $e){
@@ -64,17 +89,14 @@ class ContactController extends MY_Controller
 		}
 		
 		if( $result != false ){
-
 			DB::commit();
-			return apiResponse(200, 'success', $successMessage);
-			//Webwala::setFlashMessage('success', $successMessage);
+			Webwala::setFlashMessage('success', $successMessage);
 		} else {
 			DB::rollBack();
-			return apiResponse(500, 'error', $errorMessage);
-			// Webwala::setFlashMessage('danger', $errorMessage);
+			Webwala::setFlashMessage('danger', $errorMessage);
 		}
 		
-		// return redirect($this->redirectUrl);
+		return redirect($this->redirectUrl);
 		
 	}
 
@@ -133,7 +155,6 @@ class ContactController extends MY_Controller
 				$rowData = [];
 				$rowData['sr_no'] = ++$index;
 				$rowData['firstName'] = (checkNotEmptyString($recordDetail->v_firstname) ? $recordDetail->v_firstname : '' );
-				$rowData['lastName'] = (checkNotEmptyString($recordDetail->v_lastname) ? ( $recordDetail->v_lastname ) : '' );
 				$rowData['email'] = (checkNotEmptyString($recordDetail->v_email) ? $recordDetail->v_email : '' );
 				$rowData['mobile'] = (checkNotEmptyString($recordDetail->v_mobile) ? $recordDetail->v_mobile : '' );
 				$rowData['message'] = (checkNotEmptyString($recordDetail->v_message) ? $recordDetail->v_message : '' );

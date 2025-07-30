@@ -386,7 +386,7 @@
                 </div>
                 <div class="row">
                     <div class="bs-cta-btns text-center">
-                        <a href="contact.php" class="tp-btn mr-30 wow tpfadeUp">Contact Us<span><i
+                        <a href="{{ config('constants.CONTACT_URL') }}" class="tp-btn mr-30 wow tpfadeUp">Contact Us<span><i
                                     class="fas fa-long-arrow-right"></i>
                                 <i class="fas fa-long-arrow-right"></i></span></a>
                     </div>

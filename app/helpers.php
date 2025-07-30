@@ -5,6 +5,7 @@ use App\Helpers\Twt\Wild_tiger;
 use App\Helpers\Webwala\Webwala;
 use App\Models\Setting_model;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 if (! function_exists('is_ssl')) {
 	function is_ssl() {
@@ -186,100 +187,101 @@ if (! function_exists('objectToArray')) {
 	}
 }
 
+if (! function_exists('sendMailSMTP')) {
+	function sendMailSMTP($data){
+		if (config('constants.STOP_SYSTEM_SENDING_EMAIL') != false){
 
-
-// if (! function_exists('sendMailSMTP')) {
-// 	function sendMailSMTP($data){
-// 		if (config('constants.STOP_SYSTEM_SENDING_EMAIL') != false){
-// 			$result = [];
-// 			$result['status'] = true;
-// 			return $result;
-// 		}
+			$result = [];
+			$result['status'] = true;
+			dd($result);
+			return $result;
+		}
 		
-// 		$mailResult = false;
+		$mailResult = false;
 		
-// 		$result['status'] = false;
-// 		$where = [];
-// 		$where['isBackendRequest'] = true;
-// 		$settingModel = new Setting_model();
-// 		$settingInfo = $settingModel->getRecordDetails($where);
+		$result['status'] = false;
+		$where = [];
+		$where['isBackendRequest'] = true;
+		$settingModel = new Setting_model();
+		$settingInfo = $settingModel->getRecordDetails($where);
 		
-// 		try {
-// 			// Setup your gmail mailer
-// 			$transport = new Swift_SmtpTransport( ( ( isset($settingInfo->v_send_email_host) && (!empty($settingInfo->v_send_email_host)) ) ?  $settingInfo->v_send_email_host : '' )  , ( ( isset($settingInfo->i_send_email_port) && (!empty($settingInfo->i_send_email_port)) ) ?  $settingInfo->i_send_email_port :  '' ) , ( ( isset($settingInfo->v_send_email_encryption) && (!empty($settingInfo->v_send_email_encryption)) ) ?  $settingInfo->v_send_email_encryption :  null ) );
-// 			$transport->setUsername( ( isset($settingInfo->v_send_email_user) && (!empty($settingInfo->v_send_email_user)) ) ?  $settingInfo->v_send_email_user :  '' );
-// 			$transport->setPassword( ( isset($settingInfo->v_send_email_password) && (!empty($settingInfo->v_send_email_password)) ) ?  $settingInfo->v_send_email_password : '' );
+		try {
+			// Setup your gmail mailer
+			$transport = new Swift_SmtpTransport( ( ( isset($settingInfo->v_send_email_host) && (!empty($settingInfo->v_send_email_host)) ) ?  $settingInfo->v_send_email_host : '' )  , ( ( isset($settingInfo->i_send_email_port) && (!empty($settingInfo->i_send_email_port)) ) ?  $settingInfo->i_send_email_port :  '' ) , ( ( isset($settingInfo->v_send_email_encryption) && (!empty($settingInfo->v_send_email_encryption)) ) ?  $settingInfo->v_send_email_encryption :  null ) );
+			$transport->setUsername( ( isset($settingInfo->v_send_email_user) && (!empty($settingInfo->v_send_email_user)) ) ?  $settingInfo->v_send_email_user :  '' );
+			$transport->setPassword( ( isset($settingInfo->v_send_email_password) && (!empty($settingInfo->v_send_email_password)) ) ?  $settingInfo->v_send_email_password : '' );
 	
-// 			// Any other mailer configuration stuff needed...
-// 			$gmail = new Swift_Mailer($transport);
+			$gmail = new Swift_Mailer($transport);
 			
-// 			$data['from'] = ( ( isset($settingInfo->v_send_email_user) && (!empty($settingInfo->v_send_email_user)) ) ?  $settingInfo->v_send_email_user : '' ) ;
-// 			$data['to'] = (isset($data['to']) && !empty($data['to']) ? $data['to'] : '');
+			$data['from'] = ( ( isset($settingInfo->v_send_email_user) && (!empty($settingInfo->v_send_email_user)) ) ?  $settingInfo->v_send_email_user : '' ) ;
+			$data['to'] = (isset($data['to']) && !empty($data['to']) ? $data['to'] : '');
 			
-// 			if (config('constants.SEND_EMAIL_TO_ORIGINAL_USER') != true){
-// 				$data['to'] = (isset($settingInfo->v_contact_receive_mail) && !empty($settingInfo->v_contact_receive_mail) ? $settingInfo->v_contact_receive_mail : '');
-// 				$data['cc'] = (isset($settingInfo->v_default_cc_mail) && !empty($settingInfo->v_default_cc_mail) ? $settingInfo->v_default_cc_mail : '');
-// 			}
+			if (config('constants.SEND_EMAIL_TO_ORIGINAL_USER') != true){
+				$data['to'] = (isset($settingInfo->v_contact_receive_mail) && !empty($settingInfo->v_contact_receive_mail) ? $settingInfo->v_contact_receive_mail : '');
+			}
 			
-// 			if (empty($data['to'])){
-// 				$result['status'] = false;
-// 				$result['msg'] = trans('messages.error-recipient-not-found');
-// 				return $result;
-// 			}
+			$data['cc'] = (isset($settingInfo->v_default_cc_mail) && !empty($settingInfo->v_default_cc_mail) ? $settingInfo->v_default_cc_mail : '');
 			
-// 			$data['mailTitle'] = ( ( isset($settingInfo->v_mail_title) && (!empty($settingInfo->v_mail_title)) ) ?  $settingInfo->v_mail_title :  ''  ) ;
-// 			// Set the mailer as gmail
-// 			Mail::setSwiftMailer($gmail);
+			if (empty($data['to'])){
+				$result['status'] = false;
+				$result['msg'] = trans('messages.error-recipient-not-found');
+				return $result;
+			}
 			
-// 			$data['mailData']['settingsInfo'] = $settingInfo;
+			$data['mailTitle'] = ( ( isset($settingInfo->v_mail_title) && (!empty($settingInfo->v_mail_title)) ) ?  $settingInfo->v_mail_title :  ''  ) ;
+			// Set the mailer as gmail
 			
-// 			$result = Mail::send((!empty($data['viewName']) ? $data['viewName'] : ''), (!empty($data['mailData']) ? $data['mailData'] : []), function ($message) use ($data) {
-// 				$message->from($data['from'], (!empty($data['mailTitle']) ? $data['mailTitle'] : null));
-				
-// 				$message->to($data['to']);
-				
-// 				if(isset($data['cc']) && !empty($data['cc'])){
-// 					$message->cc($data['cc']);
-// 				}
-				
-// 				if(isset($data['bcc']) && !empty($data['bcc'])){
-// 					$message->bcc($data['bcc']);
-// 				}
-				
-// 				$message->subject($data['subject']);
-				
-// 				if (!empty($data['mail_content'])) {
-// 					$message->setBody($data['mail_content'], 'text/html');
-// 				}
-				
-// 				if (!empty($data['attachment'])) {
-// 					$data['attachment'] = json_decode($data['attachment'], true);
-// 					if (!empty($data['attachment'])) {
-// 						foreach ($data['attachment'] as $attchment) {
-// 							$message->attach(public_path($attchment));
-// 							//unlink(public_path($attchment));
-// 						}
-// 					}
-// 				}
-				
-// 			});
+			Mail::setSwiftMailer($gmail);
 			
-// 			$mailResult = true;
-// 		} catch (\Exception $e) {
-// 			$mailResult = false;
-// 			Log::error($e->getMessage());
-// 			$result['error'] = $e->getMessage();
-// 		}
-// 		//var_dump($mailResult);
-// 		if ($mailResult != false) {
-// 			$result['status'] = true;
-// 		} else {
-// 			$result['status'] = false;
-// 		}
-// 		//$result['status'] = true;
-// 		return $result;
-// 	}
-// }
+			$data['mailData']['settingsInfo'] = $settingInfo;
+			
+			$result = Mail::send((!empty($data['viewName']) ? $data['viewName'] : ''), (!empty($data['mailData']) ? $data['mailData'] : []), function ($message) use ($data) {
+				$message->from($data['from'], (!empty($data['mailTitle']) ? $data['mailTitle'] : null));
+				
+				$message->to($data['to']);
+				
+				if(isset($data['cc']) && !empty($data['cc'])){
+					$message->cc($data['cc']);
+				}
+				
+				if(isset($data['bcc']) && !empty($data['bcc'])){
+					$message->bcc($data['bcc']);
+				}
+				
+				$message->subject($data['subject']);
+				
+				if (!empty($data['mail_content'])) {
+					$message->setBody($data['mail_content'], 'text/html');
+				}
+				
+				if (!empty($data['attachment'])) {
+					$data['attachment'] = json_decode($data['attachment'], true);
+					if (!empty($data['attachment'])) {
+						foreach ($data['attachment'] as $attchment) {
+							$message->attach(public_path($attchment));
+							//unlink(public_path($attchment));
+						}
+					}
+				}
+				
+			});
+			
+			$mailResult = true;
+		} catch (\Exception $e) {
+			$mailResult = false;
+			Log::error($e->getMessage());
+			$result['error'] = $e->getMessage();
+		}
+		
+		if ($mailResult != false) {
+			$result['status'] = true;
+		} else {
+			$result['status'] = false;
+		}
+		//$result['status'] = true;
+		return $result;
+	}
+}
 
 if (! function_exists('generateOTP')) {
 

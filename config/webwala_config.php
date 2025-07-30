@@ -57,7 +57,7 @@ $webwalaConfig['DATABASE_PASSWORD'] = "";
 $webwalaConfig['DATABASE_NAME'] = "urlwebwala";
 
 $webwalaConfig['HOST_HEADER_INJECTION'] = false;
-$webwalaConfig['SEND_EMAIL_TO_ORIGINAL_USER'] = false;
+$webwalaConfig['SEND_EMAIL_TO_ORIGINAL_USER'] = true;
 $webwalaConfig['SYSTEM_ENVIRONMENT'] = 'local'; // 1) local  2) production
 
 $webwalaConfig['BACKEND_ROUTE_SLUG'] = 'admin/';
@@ -66,5 +66,5 @@ $webwalaConfig['BACKEND_SITE_URL'] = $baseUrl . $webwalaConfig['BACKEND_ROUTE_SL
 $webwalaConfig['IS_FRONTEND_REACT'] = false;
 $webwalaConfig['LOGIN_OTP_EXPIRE_TIME'] = 5; //Enter this value in minutes
 $webwalaConfig['LOGIN_RESEND_OTP_TIME'] = 5; //Enter this value in seconds
-$webwalaConfig['STOP_SYSTEM_SENDING_EMAIL'] = true;
+$webwalaConfig['STOP_SYSTEM_SENDING_EMAIL'] = false;
 $webwalaConfig['RESEND_OTP_TIMER_KEY'] = "resend-otp-time";

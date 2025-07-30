@@ -14,7 +14,6 @@ Route::prefix('admin/v1')->group(function () {
     Route::post('contact/add', [App\Http\Controllers\ContactController::class, 'add']);
     
     Route::get('newslatter/filter', [App\Http\Controllers\NewslatterController::class, 'list']);
-    Route::post('newslatter/add', [App\Http\Controllers\NewslatterController::class, 'add']);
     
     Route::get('service/filter', [App\Http\Controllers\ServiceController::class, 'list']);
     Route::post('service/add', [App\Http\Controllers\ServiceController::class, 'add']);

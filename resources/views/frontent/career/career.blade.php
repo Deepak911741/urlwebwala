@@ -9,7 +9,7 @@
                 <div class="col-xxl-12">
                     <div class="breadcrumb__content p-relative z-index-1">
                         <div class="breadcrumb__list mb-10">
-                            <span><a href="index.php">Home</a></span>
+                            <span><a href="{{ config('constants.HOME_URL') }}">Home</a></span>
                             <span class="dvdr dvdr-line"></span>
                             <span class="tp-bc-active-menu">Company</span>
                         </div>
@@ -168,7 +168,7 @@
                                 style="max-height: 100px; object-fit: contain;">
                         </div>
                         <h3 class="it-service__item-title mb-20">
-                            <a href="php-internship.php">Digital Marketing (Work From Home - Remote)</a>
+                            <a href="{{ config('constants.PHPINTERNSHIP_URL')}}">Digital Marketing (Work From Home - Remote)</a>
                         </h3>
                         <p class="mb-0">
                             Enhance brand visibility through SEO, social media, content creation, and paid ads. Develop

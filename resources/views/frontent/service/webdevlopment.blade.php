@@ -10,7 +10,7 @@
                 <div class="col-xxl-12">
                     <div class="breadcrumb__content p-relative z-index-1">
                         <div class="breadcrumb__list mb-10">
-                            <span><a href="index.php">Home</a></span>
+                            <span><a href="{{ config('constants.HOME_URL') }}">Home</a></span>
                             <span class="dvdr dvdr-line"></span>
                             <span class="tp-bc-acive-menu">Services</span>
                         </div>
@@ -33,7 +33,7 @@
                                         <span><i class="flaticon-computer"></i></span>
                                         <!-- flaticon-analytics -->
                                     </div>
-                                    <h3 class="sv-detials-sv-item__title"><a href="service.php"> Clean Code</a></h3>
+                                    <h3 class="sv-detials-sv-item__title"><a href="{{ config('constants.SERVICE_URL') }}"> Clean Code</a></h3>
                                     <span class="counter-number">01</span>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                                         <span><i class="flaticon-computer"></i></span>
                                         <!-- flaticon-analytics -->
                                     </div>
-                                    <h3 class="sv-detials-sv-item__title"><a href="service.php"> On Time Delivery</a>
+                                    <h3 class="sv-detials-sv-item__title"><a href="{{ config('constants.SERVICE_URL') }}"> On Time Delivery</a>
                                     </h3>
                                     <span class="counter-number">02</span>
                                 </div>
@@ -54,7 +54,7 @@
                                         <span><i class="flaticon-computer"></i></span>
                                         <!-- flaticon-analytics -->
                                     </div>
-                                    <h3 class="sv-detials-sv-item__title"><a href="service.php"> Amazing Graphics</a>
+                                    <h3 class="sv-detials-sv-item__title"><a href="{{ config('constants.SERVICE_URL') }}"> Amazing Graphics</a>
                                     </h3>
                                     <span class="counter-number">03</span>
                                 </div>
@@ -65,7 +65,7 @@
                                         <span><i class="flaticon-computer"></i></span>
                                         <!-- flaticon-analytics -->
                                     </div>
-                                    <h3 class="sv-detials-sv-item__title"><a href="service.php"> Speed Optimized</a>
+                                    <h3 class="sv-detials-sv-item__title"><a href="{{ config('constants.SERVICE_URL') }}"> Speed Optimized</a>
                                     </h3>
                                     <span class="counter-number">04</span>
                                 </div>

@@ -242,4 +242,7 @@ return [
 	'page-name' => 'Page Name',
 	'page-title' => 'Page Title',
 	'category' => 'Category',
+	'message' => 'Message',
+	'newslatter-subscribe-success' => '🎉 Thank you for subscribing! <br> You’re now part of the URLWebwala family. We’ll keep you updated with the latest news and special offers.',
+	'newslatter-subscribe-error' => 'Error Occurred While Subscribing. Please Try Again!!!',
 ];

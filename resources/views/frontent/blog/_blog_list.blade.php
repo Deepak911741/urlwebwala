@@ -24,5 +24,14 @@
         </div>
     @endforeach
 @else
-    <div class="col-12"><p>No blogs found for this category.</p></div>
+<div class="col-12">
+    <div class="text-center p-5 rounded shadow-sm" style="background-color: #f9f9f9;">
+        <img src="{{ asset ('public/images/no-blog.png') }}" alt="No Blogs" style="width: 150px; max-width: 100%; margin-bottom: 20px;">
+        <h4 class="text-muted">Oops! No blogs found</h4>
+        <p class="text-secondary">We couldn't find any blogs under this category at the moment. Please check back later or explore other categories.</p>
+        <a href="{{ url('/blog') }}" class="btn btn-primary mt-3">
+            Back to Blogs <i class="fas fa-undo-alt ms-2"></i>
+        </a>
+    </div>
+</div>
 @endif

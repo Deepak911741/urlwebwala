@@ -1,6 +1,7 @@
 @extends(config('constants.FRONTENT_FOLDER') . 'includes/header')
 
 @section('content')
+
     <div class="tp-offcanvas-wrapper">
     <div class="tp-offcanvas white-bg">
         <div class="offc-top-pattern">
@@ -11,7 +12,7 @@
                 <span><i class="fal fa-times"></i></span>
             </div>
             <div class="tp-offcanvas__logo mb-50">
-                <a href="index.php">
+                <a href="{{ config('constants.HOME_URL') }}">
                     <img src="{{ asset ('public/images/logo/urlwebwala.png')}}" style="width:150px;" alt="logo">
                 </a>
             </div>
@@ -163,6 +164,9 @@
             opacity: 0.7;
             pointer-events: none;
         }
+        .invalid-input {
+            color: red;
+        }
         </style>
 
         <!-- Contact Form -->
@@ -181,43 +185,50 @@
                     </div>
                 </div>
 
-                <!-- Contact Form -->
                 <div class="col-lg-6">
                     <div class="it-cta-form wow tpfadeUp" data-wow-delay=".4s">
-                        <!-- CRITICAL: Added method="POST" and action to prevent GET submission -->
-                        <form id="contactForm" method="POST" action="javascript:void(0);">
+                        {{ Webwala::readMessage() }}
+                        <form id="add-contact-form" action="{{ config('constants.CONTACT_URL')  .  '/add'  }}" method="post" >
+                            @csrf
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="input-item">
                                         <span><i class="fas fa-user"></i></span>
-                                        <input type="text" name="name" id="name" placeholder="Full name" required>
+                                        <input type="text" name="name" id="name" value="{{ old('name')}}" placeholder="Full name">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="input-item">
                                         <span><i class="fas fa-envelope-open"></i></span>
-                                        <input type="email" name="email" id="email" placeholder="Email address" required>
+                                        <input type="email" name="email" id="email" value="{{ old('email')}}" placeholder="Email address">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="input-item">
                                         <span><i class="fas fa-phone"></i></span>
-                                        <input type="tel" name="phone" id="phone" maxlength="15" placeholder="Phone">
+                                        <input type="tel" name="phone" id="phone" value="{{ old('phone')}}" maxlength="15" placeholder="Phone">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="input-item">
                                         <span><i class="fas fa-book"></i></span>
-                                        <input type="text" name="subject" id="subject" placeholder="Service">
+                                        @if (isset($services) && count($services) > 0)
+                                            <select name="service_id" id="service_id" class="form-control select2">
+                                                <option value="">Select Service</option>
+                                                @foreach ($services as $service)
+                                                    <option value="{{ (!empty($service->i_id) ? Webwala::encode($service->i_id) : 0) }}">{{ (!empty($service->v_service_name) ? $service->v_service_name : '') }}</option>
+                                                @endforeach
+                                            </select>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-item-textarea">
-                                        <span><i class="fas fa-pen"></i></span>
-                                        <textarea name="message" id="message" placeholder="Message"></textarea>
+                                        <span><i class="fas fa-pen"></i></span> 
+                                        <textarea name="message" id="message" value="{{ old('message')}}" placeholder="Message"></textarea>
                                     </div>
                                     <button type="submit" id="submitBtn" class="it-cta-form-submit border-0">
-                                        Send Email
+                                        Submit
                                     </button>
                                 </div>
                             </div>
@@ -227,4 +238,68 @@
             </div>
         </div>
     </div>
+    
+<script>
+  $(document).ready(function () {
+
+    jQuery.validator.addMethod("noSpace", function(value, element) {
+        return value.trim().length > 0;
+    }, "No space allowed.");
+
+    $("#add-contact-form").validate({
+      errorClass: "invalid-input",
+      onsubmit: true,
+      onkeyup: false,
+      rules: {
+        name: {
+          required: true,
+          noSpace: true
+        },
+        email: {
+          required: true,
+          email: true,
+          noSpace: true
+        },
+        phone: {
+          required: true,
+          digits: true,
+          minlength: 10,
+          maxlength: 15,
+          noSpace: true
+        },
+        service_id: {
+          required: true,
+          noSpace: true
+        },
+        message: {
+          required: true,
+          noSpace: true
+        }
+      },
+      messages: {
+        name: {
+          required: '{{ trans("messages.required-enter-field-validation" , [ "fieldName" => trans("messages.name") ]) }}',
+        },
+        email: {
+          required: '{{ trans("messages.required-enter-field-validation" , [ "fieldName" => trans("messages.email-id") ]) }}',
+        },
+        phone: {
+          required: '{{ trans("messages.required-enter-field-validation" , [ "fieldName" => trans("messages.mobile-no") ]) }}',
+        },
+        service_id: {
+          required: '{{ trans("messages.required-select-field-validation" , [ "fieldName" => trans("messages.service") ]) }}',
+        },
+        message: {
+          required: '{{ trans("messages.required-enter-field-validation" , [ "fieldName" => trans("messages.message") ]) }}',
+        }
+      },
+      submitHandler: function(form) {
+        form.submit();
+      }
+    });
+
+  });
+</script>
+
+
 @endsection

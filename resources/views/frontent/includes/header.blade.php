@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('public/images/logo/fev.png') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo (isset($pageTitle) && !empty($pageTitle) ? $pageTitle : 'Urlwebwala LLP'); ?> | Urlwebwala LLP</title>
     <meta name="description" content="<?php echo (isset($description) && !empty($description) ? $description : ' '); ?>">
@@ -20,7 +22,6 @@
     <meta property="og:image:alt" content="Urlwebwala LLP">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/logo/fev.png') }}">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZ5QVDBENP"></script>
     <link rel="stylesheet" href="{{ asset ('public/css/style1.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/bootstrap.min.css')}}">
@@ -36,7 +37,9 @@
     <link rel="stylesheet" href="{{ asset ('public/css/blogstyle.css')}}">
     <link rel="stylesheet" href="{{ asset ('public/css/stylecookies.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-   
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 </head>
 
 <body>
@@ -80,7 +83,7 @@
                                                 </ul>
                                             </li>
                                             <li class="has-dropdown">
-                                                <a href="internship.php">INTERNSHIP</a>
+                                                <a href="{{ config('constants.INTERNSHIP_URL') }}">INTERNSHIP</a>
                                                 <ul class="submenu">
                                                     <li><a href="{{ config('constants.PHPINTERNSHIP_URL') }}">PHP</a></li>
                                                     <li><a href="{{ config('constants.WEBINTERNSHIP_URL') }}">WEB DEVELOPMENT</a></li>
@@ -191,6 +194,8 @@
             <i class="fas fa-angle-double-up" style="margin-top: 20px;"></i>
         </span>
     </a>
+
+    @include('common-form-validation')
 
     {{-- "section extends" --}}
     
@@ -334,8 +339,8 @@
                             <div class="col-md-8 col-12">
                                 <div class="tp-copyrigh-text text-center text-md-start">
                                     <span>
-                                        <a href="privacypolicy.php">Privacy and Policy</a> |
-                                        <a href="termsconditions.php">Terms & Conditions</a> |
+                                        <a href="{{ config('constants.PRIVICYPOLICY_URL') }}">Privacy and Policy</a> |
+                                        <a href="{{ config('constants.TERMSCONDITION_URL') }}">Terms & Conditions</a> |
                                         <a href="#">Admin Login</a>
                                     </span>
                                     <br>
@@ -368,7 +373,8 @@
         </div> --}}
 </footer>
 
-<script src="{{ asset ('public/js/jquery.js')}}"></script>
+
+<!-- <script type="text/javascript" src="{{ asset ('public/js/jquery-3.7.1.min.js')}}"></script> -->
 <script src="{{ asset ('public/js/waypoints.js')}}"></script>
 <script src="{{ asset ('public/js/modernizr.js')}}"></script>
 <script src="{{ asset ('public/js/bootstrap.bundle.min.js')}}"></script>
@@ -385,7 +391,7 @@
 <script src="{{ asset ('public/js/ajax-form.js')}}"></script>
 <script src="{{ asset ('public/js/headline.js')}}"></script>
 <script src="{{ asset ('public/js/main.js')}}"></script>
-<script src="{{ asset ('public/js/scriptcookies.js')}}"></script>
+<!-- <script src="{{ asset ('public/js/scriptcookies.js')}}"></script> -->
 </body>
 
 </html>

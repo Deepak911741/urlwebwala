@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 Route::get('/', [App\Http\Controllers\Frontend::class, 'Home']);
 Route::get('about', [App\Http\Controllers\Frontend::class, 'About']);
 Route::get('career', [App\Http\Controllers\Frontend::class, 'Career']);
@@ -25,3 +24,7 @@ Route::get('contact-us', [App\Http\Controllers\Frontend::class, 'contact']);
 Route::get('service', [App\Http\Controllers\Frontend::class, 'Service']);
 Route::get('internship', [App\Http\Controllers\Frontend::class, 'Internship']);
 Route::get('blog/{slug}', [App\Http\Controllers\Frontend::class, 'BlogSlug']);
+Route::post('contact-us/add', [App\Http\Controllers\ContactController::class, 'add']);
+Route::get('privicypolicy', [App\Http\Controllers\Frontend::class, 'PrivicyPolicy']);
+Route::get('termcondition', [App\Http\Controllers\Frontend::class, 'TermCondition']);
+Route::post('newslatter/add', [App\Http\Controllers\NewslatterController::class, 'add']);
