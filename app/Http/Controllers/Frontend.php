@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\blogModel;
 use App\Models\categoryModel;
 use App\Models\clientModel;
+use App\Models\Counter_Model;
 use App\Models\seoContentModel;
 use App\Models\serviceModel;
 use App\Models\testinomialModel;
@@ -42,6 +43,8 @@ class Frontend extends Guest
 		$data['blogs'] = (new blogModel)->getRecordDetails($whereData);
 
 		$data['services'] = (new serviceModel)->getRecordDetails();
+
+		$this->manageVisitorCount();
 		return $this->guestView($this->adminFolderName . 'home.home', $data);
 	}
 
@@ -196,6 +199,26 @@ class Frontend extends Guest
 	public function TermCondition() {
 		$data = $this->getSeoContent('termcondition');
 		return $this->guestView($this->adminFolderName . 'other.privacypolicy', $data);
+	}
+
+	public function manageVisitorCount(){
+		$model = new Counter_Model();
+		if(!session()->has('') || (session()->has('has_visited') && session()->get('has_visited') != config('constants.SELECTION_YES'))){
+			$where = [];
+			$where['singleRecord'] = true;
+			$visitedCounterInfo = $model->getRecordDetails($where);
+			
+			if(!empty($visitedCounterInfo)){
+				$updateCountData = [];
+				$updateCountData['i_visited_count'] = $visitedCounterInfo->i_visited_count + 1;
+				$updateCounter = $model->updateTableData(config('constants.COUNTER_MASTER_TABLE') , $updateCountData , ['i_id' => $visitedCounterInfo->i_id]);
+			} else{
+				$insertCountData = [];
+				$insertCountData['i_visited_count'] = 1;
+				$insertCountData = $model->insertTableData(config('constants.COUNTER_MASTER_TABLE') , $insertCountData);
+			}
+			session()->put('has_visited' , config('constants.SELECTION_YES') );
+		}
 	}
 
 }

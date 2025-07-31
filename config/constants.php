@@ -87,6 +87,7 @@ $constants = [
 	'BLOG_TABLE' => 'blog_master',
 	'SEOCONTENT_TABLE' => 'seo_content_master',	
 	'CATEGORY_TABLE' => 'category_master',	
+	'COUNTER_MASTER_TABLE' => 'counter_master',
 
 	'HOME_URL' => $webwalaConfig['SITE_URL'] . '',
 	'ABOUT_URL' => $webwalaConfig['SITE_URL'] . 'about',
